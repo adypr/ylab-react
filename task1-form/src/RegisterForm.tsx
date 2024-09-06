@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from './AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { apiRequest } from './api';
 
 const MIN_PASSWORD_LENGTH = 8;
@@ -142,7 +142,7 @@ const RegisterForm: React.FC = () => {
         </button>
 
         <div className="auth__options auth__options_single">
-          <a href="/login" className="auth__link">Already have an account? Login</a>
+          <Link to="/login" className="auth__link">Already have an account? Login</Link>
         </div>
 
         <div className="auth__social-login">

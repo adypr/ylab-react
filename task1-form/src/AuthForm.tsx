@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from './AuthContext';
 import { apiRequest } from './api';
+import { Link } from 'react-router-dom';
 
 const AuthForm: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -33,6 +34,10 @@ const AuthForm: React.FC = () => {
       if (rememberMe) {
         localStorage.setItem('authToken', data.token);
         localStorage.setItem('refreshToken', data.refreshToken);
+      }
+
+      if (data.name) {
+        localStorage.setItem('userName', data.name);
       }
 
       login(data.token, data.refreshToken);
@@ -112,7 +117,7 @@ const AuthForm: React.FC = () => {
 
         <div className="auth__options">
           <a href="#" className="auth__link">Forgot Password?</a>
-          <a href="/register" className="auth__link">Create Account</a>
+          <Link to="/register" className="auth__link">Create Account</Link>
         </div>
 
         <div className="auth__social-login">

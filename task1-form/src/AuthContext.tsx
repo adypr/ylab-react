@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { apiRequest } from './api';
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -41,16 +42,15 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const refreshAccessToken = async (refreshToken: string) => {
     try {
-      const response = await fetch('https://react-rslang-be-ur2a.onrender.com/users/{id}/tokens', {
+      const data = await apiRequest(`/users/{id}/tokens`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${refreshToken}`
-        }
+          Authorization: `Bearer ${refreshToken}`,
+        },
       });
 
-      if (response.ok) {
-        const data = await response.json();
+      if (data) {
         localStorage.setItem('authToken', data.token);
         localStorage.setItem('refreshToken', data.refreshToken);
         setIsAuthenticated(true);
