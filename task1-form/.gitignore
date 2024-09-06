@@ -21,10 +21,6 @@ dist-ssr/
 .vite/
 .vitest/
 
-# Vite configuration files
-vite.config.ts
-vite.config.js
-
 # Jest temporary files
 coverage/
 jest.config.js
