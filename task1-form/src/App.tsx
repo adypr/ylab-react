@@ -5,6 +5,8 @@ import RegisterForm from './RegisterForm';
 import Dashboard from './Dashboard';
 import { AuthProvider, AuthContext } from './AuthContext';
 
+import './App.scss';
+
 const App: React.FC = () => {
   return (
     <Router>

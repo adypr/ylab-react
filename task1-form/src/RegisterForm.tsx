@@ -81,44 +81,83 @@ const RegisterForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleRegister}>
-      <h2>Register</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {message && <p style={{ color: 'green' }}>{message}</p>}
-      {loading && <p>Loading...</p>}
-      <div>
-        <label>Name (optional):</label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          disabled={loading}
-        />
-      </div>
-      <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          disabled={loading}
-        />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={handlePasswordChange}
-          required
-          disabled={loading}
-        />
-      </div>
-      <button type="submit" disabled={loading}>
-        {loading ? 'Registering...' : 'Register'}
-      </button>
-    </form>
+    <div className="auth">
+      <form className="auth__form" onSubmit={handleRegister}>
+        <h2 className="auth__title">Create Account</h2>
+        <p className="auth__subtitle">Please register to create your account</p>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {message && <p style={{ color: 'green' }}>{message}</p>}
+        {loading && <p>Loading...</p>}
+
+        <div className="auth__input-group">
+          <label htmlFor="name" className="auth__label">Name (optional):</label>
+          <input
+            type="text"
+            name="name"
+            className="auth__input"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            disabled={loading}
+          />
+        </div>
+
+        <div className="auth__input-group">
+          <label htmlFor="email" className="auth__label">Email:</label>
+          <input
+            type="email"
+            name="email"
+            className="auth__input"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            disabled={loading}
+          />
+        </div>
+
+        <div className="auth__input-group">
+          <label htmlFor="password" className="auth__label">Password:</label>
+          <input
+            type="password"
+            name="password"
+            className="auth__input"
+            value={password}
+            onChange={handlePasswordChange}
+            required
+            disabled={loading}
+          />
+        </div>
+
+        <div className="auth__remember-me">
+          <input
+            type="checkbox"
+            name="remember"
+            className="auth__checkbox"
+            disabled={loading}
+          />
+          <label htmlFor="remember" className="auth__checkbox-label">Remember me</label>
+        </div>
+
+        <button type="submit" className="auth__button" disabled={loading}>
+          {loading ? 'Registering...' : 'Register'}
+        </button>
+
+        <div className="auth__options auth__options_single">
+          <a href="/login" className="auth__link">Already have an account? Login</a>
+        </div>
+
+        <div className="auth__social-login">
+          <p className="auth__social-text">Or register with</p>
+          <div className="auth__social-buttons">
+            <button type="button" className="auth__social-button auth__social-button--google">
+              <i className="fab fa-google"></i> Google
+            </button>
+            <button type="button" className="auth__social-button auth__social-button--github">
+              <i className="fab fa-github"></i> GitHub
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 };
 

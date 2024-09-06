@@ -60,13 +60,16 @@ const AuthForm: React.FC = () => {
       <form className="auth__form" onSubmit={handleLogin}>
         <h2 className="auth__title">Welcome Back</h2>
         <p className="auth__subtitle">Please login to your account</p>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {loading && <p>Loading...</p>}
+
+        <div className="auth__messages">
+          {error && <p className="auth__error-message">{error}</p>}
+          {loading && <p className="auth__loading-message">Loading...</p>}
+        </div>
+
         <div className="auth__input-group">
           <label htmlFor="email" className="auth__label">Email</label>
           <input
             type="email"
-            id="email"
             name="email"
             className="auth__input"
             placeholder="Enter your email"
@@ -76,16 +79,16 @@ const AuthForm: React.FC = () => {
             disabled={loading}
           />
         </div>
+
         <div className="auth__input-group">
           <label htmlFor="password" className="auth__label">Password</label>
           <input
             type="password"
-            id="password"
             name="password"
             className="auth__input"
             placeholder="Enter your password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleInputChange}
             required
             disabled={loading}
           />
@@ -94,7 +97,6 @@ const AuthForm: React.FC = () => {
         <div className="auth__remember-me">
           <input
             type="checkbox"
-            id="remember"
             name="remember"
             className="auth__checkbox"
             checked={rememberMe}
